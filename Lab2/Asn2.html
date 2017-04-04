@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Week 1</title>
+		<meta charset="UTF-8">
+		<meta name="description" content="Free Web tutorials">
+		<meta name="keywords" content="HTML,CSS,XML,JavaScript">
+		<meta name="author" content="John Doe">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+	</head>
+	<body>
+            <input type="button" id="btnGenerate" value="Generate">
+            <input type="text" id="num" value="5">
+            <div id="wrapper">
+
+            </div>
+        </body>
+	<script type="text/javascript">
+            //North Pagliarini --- Assignment
+            btnGenerate.onclick= generatebox;
+
+            function generatebox()
+            {
+
+                //Pull in the numerical value of the number in the text box and store it in a variable
+                var howMany = parseInt(num.value);
+
+                //Creates "theNum" Array
+                var theNum = [];
+
+                //Begin the for loop to fill in the 2D array (This fills in "theNum")
+                for(var CurRowAmt = 0; CurRowAmt < howMany; CurRowAmt++)
+                {
+                  //Create a new array inside "theNum" REMEMBER .push creates new indexs for you
+                  theNum.push([]);
+                  //(This fills in the arrays inside "thenNum")
+                  for(var CurColAmt = 0; CurColAmt < howMany; CurColAmt++)
+                  {
+                      //-This is more for Me-
+                      //Add the Number to the "x" Array inside "the Num" ex:
+                      //
+                      //theNum
+                      //[
+                      //[0] <--| IT will insert into these
+                      //[1] <--|
+                      //]
+                      theNum[CurRowAmt].push(randomNumber(1, 100));
+                  }      
+                }
+                  console.log(theNum);  
+
+                //Start Box creation Array
+                var HtmlStr = "<table>";
+
+                for(r = 0; r < howMany; r++)
+                {
+                  HtmlStr += "<tr>";
+                    for(c = 0; c < howMany; c++)
+                    {
+                      var CurntBox = theNum[r][c];
+
+                      if(CurntBox % 2 === 0)
+                        {
+                          HtmlStr += "<td style = 'background-color: red'>";
+                          HtmlStr += CurntBox;
+                          HtmlStr += "</td>";
+                        }
+                      else if(CurntBox % 3 === 0)
+                      {
+                          HtmlStr += "<td style = 'background-color: blue'>";
+                          HtmlStr += CurntBox;
+                          HtmlStr += "</td>";
+                      }
+                      else
+                      {
+                          HtmlStr += "<td>";
+                          HtmlStr += CurntBox;
+                          HtmlStr += "</td>";
+                      }
+                    }
+                  HtmlStr += "</tr>";
+                }
+              HtmlStr += "</table>";
+
+              wrapper.innerHTML = HtmlStr;
+            console.log(HtmlStr);
+            }
+
+            //RandomNumber Function
+            function randomNumber (min, max) 
+            {
+               return Math.floor (Math.random() * (max - min + 1)) + min;
+
+            }
+	</script>
+	
+    <style>table, td {border:1px solid black;}</style>
+	
+</html>
